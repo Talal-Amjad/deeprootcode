@@ -198,3 +198,37 @@ export const inquiryTypes = [
   "One-to-one learning sessions",
   "Code review & debugging",
 ] as const;
+
+/** General questions shown on the contact page (with FAQ structured data). Review answers before launch. */
+export const generalFaqs = [
+  {
+    question: "How much does a software project cost?",
+    answer:
+      "It depends on scope, complexity and timeline. After understanding your requirements we suggest an approach and give a clear estimate. For uncertain ideas, a small discovery phase or prototype is often the most cost-effective first step.",
+  },
+  {
+    question: "How long does it take to build a website or application?",
+    answer:
+      "A focused website or prototype can take a few weeks; larger web, mobile or AI products are usually delivered in stages over several months. We agree milestones up front so you can see working software early.",
+  },
+  {
+    question: "Do you work with clients internationally?",
+    answer:
+      "Yes. We work remotely with clients in different countries and time zones, using clear written communication, regular updates and scheduled calls.",
+  },
+  {
+    question: "Who owns the code you write?",
+    answer:
+      "Ownership is set out in our agreement with you. For client projects, our standard approach is that you own the code and deliverables once the work is paid for, with repositories and documentation handed over.",
+  },
+  {
+    question: "Can we sign an NDA before sharing project details?",
+    answer:
+      "Yes. If your idea or data is sensitive, tell us in your first message and we can agree a non-disclosure agreement before you share specifics.",
+  },
+  {
+    question: "Do you offer support after launch?",
+    answer:
+      "Yes, where agreed. We can provide maintenance, monitoring, bug fixes and new features after launch, or hand the project over to your own team with documentation.",
+  },
+];

@@ -11,6 +11,8 @@ export function pageMetadata({
   description: string;
   path: string;
 }): Metadata {
+  // Default share image; routes with their own opengraph-image file override it automatically.
+  const images = [{ url: "/opengraph-image", width: 1200, height: 630, alt: `${siteConfig.name}: ${title}` }];
   return {
     title,
     description,
@@ -21,11 +23,13 @@ export function pageMetadata({
       title: `${title} | ${siteConfig.name}`,
       description,
       url: path,
+      images,
     },
     twitter: {
       card: "summary_large_image",
       title: `${title} | ${siteConfig.name}`,
       description,
+      images,
     },
   };
 }

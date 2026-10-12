@@ -11,9 +11,9 @@ import { pageMetadata } from "@/lib/metadata";
 import { pad } from "@/lib/utils";
 
 export const metadata = pageMetadata({
-  title: "Services",
+  title: "Web, AI & App Development Services",
   description:
-    "Web development, AI & machine learning, automation, mobile apps, backend APIs, research & development, academic projects and technical training.",
+    "Software development services: web apps and SaaS, AI and LLM solutions, business automation, mobile apps, backend APIs, research support and mentorship.",
   path: "/services",
 });
 
@@ -22,6 +22,7 @@ export default function ServicesPage() {
     <>
       <PageHeader
         eyebrow="Services"
+        breadcrumbs={[{ name: "Services", path: "/services" }]}
         title={
           <>
             Everything you need to build, <Accent>from the root up.</Accent>

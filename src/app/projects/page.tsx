@@ -9,9 +9,9 @@ import { projectCategories, projects } from "@/data/projects";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata = pageMetadata({
-  title: "Projects",
+  title: "Projects: Web, AI, Automation & Mobile Work",
   description:
-    "Explore the kinds of web applications, AI systems, automations, mobile apps and research prototypes Deep Root Code builds.",
+    "Explore web apps, AI and RAG systems, workflow automations, mobile apps and research prototypes, with the goals, challenges and implementation behind each.",
   path: "/projects",
 });
 
@@ -28,6 +28,7 @@ export default function ProjectsPage() {
     <>
       <PageHeader
         eyebrow="Projects"
+        breadcrumbs={[{ name: "Projects", path: "/projects" }]}
         title={
           <>
             Built with care, <Accent>engineered to last.</Accent>

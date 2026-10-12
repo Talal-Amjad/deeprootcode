@@ -2,15 +2,21 @@ import { Mail } from "lucide-react";
 import { ContactForm } from "@/components/forms/contact-form";
 import { PageHeader } from "@/components/layout/page-header";
 import { Container } from "@/components/ui/container";
-import { Accent } from "@/components/ui/section-heading";
+
 import { SocialIcon, socialLabels } from "@/components/ui/social-icons";
 import { configuredSocialLinks, siteConfig } from "@/config/site";
 import { services } from "@/data/services";
 import { pageMetadata } from "@/lib/metadata";
 import { pad } from "@/lib/utils";
+import { faqSchema } from "@/lib/seo";
+import { FaqList } from "@/components/seo/faq-list";
+import { JsonLd } from "@/components/seo/json-ld";
+import { Section } from "@/components/ui/section";
+import { Accent, SectionHeading } from "@/components/ui/section-heading";
+import { generalFaqs } from "@/data/content";
 
 export const metadata = pageMetadata({
-  title: "Contact",
+  title: "Contact Us: Start a Software Project",
   description:
     "Tell us about your project, research or learning goals. Deep Root Code will reply with questions, ideas and a suggested next step.",
   path: "/contact",
@@ -43,6 +49,7 @@ export default function ContactPage() {
     <>
       <PageHeader
         eyebrow="Contact"
+        breadcrumbs={[{ name: "Contact", path: "/contact" }]}
         title={
           <>
             Let&apos;s talk about what <Accent>you&apos;re building.</Accent>
@@ -120,6 +127,23 @@ export default function ContactPage() {
           </aside>
         </div>
       </Container>
+
+      <Section labelledBy="faq-title" className="border-t border-border bg-surface/40">
+        <JsonLd data={faqSchema(generalFaqs)} />
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-4">
+            <SectionHeading
+              id="faq-title"
+              eyebrow="FAQ"
+              title="Frequently asked questions"
+              description="Quick answers about cost, timelines and how we work together."
+            />
+          </div>
+          <div className="lg:col-span-8">
+            <FaqList faqs={generalFaqs} />
+          </div>
+        </div>
+      </Section>
     </>
   );
 }

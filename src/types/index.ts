@@ -22,6 +22,13 @@ export type Service = {
   /** Value pre-selected in the contact form's service field. */
   contactCategory: ContactCategory;
   ctaLabel: string;
+  seo: {
+    /** Search title, ≤ 45 chars (the " | Deep Root Code" suffix is added automatically). */
+    title: string;
+    /** Search snippet, ~140–160 chars. */
+    description: string;
+  };
+  faqs: { question: string; answer: string }[];
 };
 
 export type TechnologyCategory = {

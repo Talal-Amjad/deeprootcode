@@ -3,7 +3,11 @@ import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { RevealObserver } from "@/components/layout/reveal-observer";
-import { configuredSocialLinks, siteConfig } from "@/config/site";
+import { JsonLd } from "@/components/seo/json-ld";
+import { siteConfig } from "@/config/site";
+import { services } from "@/data/services";
+import { technologyCategories } from "@/data/technologies";
+import { organizationSchema, websiteSchema } from "@/lib/seo";
 import "./globals.css";
 
 const geistSans = Geist({ subsets: ["latin"], variable: "--font-geist-sans", display: "swap" });
@@ -11,32 +15,49 @@ const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono"
 const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
   weight: "400",
-  style: ["normal", "italic"],
+  style: "italic", // only used for <Accent> words
   variable: "--font-instrument-serif",
   display: "swap",
 });
 
+const homeTitle = `${siteConfig.name} | Software Development & AI Agency`;
+const homeDescription =
+  "Software development agency building custom web and mobile apps, AI and LLM solutions, business automation and research prototypes for startups and businesses.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
-  title: {
-    default: `${siteConfig.name} — Software, AI & Automation Built from the Root Up`,
-    template: `%s | ${siteConfig.name}`,
-  },
-  description: siteConfig.description,
+  title: { default: homeTitle, template: `%s | ${siteConfig.name}` },
+  description: homeDescription,
   applicationName: siteConfig.name,
+  authors: [{ name: siteConfig.name, url: siteConfig.url }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  category: "technology",
   alternates: { canonical: "/" },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
+  },
   openGraph: {
     type: "website",
     siteName: siteConfig.name,
-    title: siteConfig.name,
-    description: siteConfig.description,
+    title: homeTitle,
+    description: homeDescription,
     url: "/",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: siteConfig.name,
-    description: siteConfig.description,
+    title: homeTitle,
+    description: homeDescription,
+  },
+  // Search engine ownership verification — set the env vars, no code changes needed.
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
+    other: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+      ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION }
+      : undefined,
   },
   formatDetection: { email: false, telephone: false, address: false },
 };
@@ -54,21 +75,11 @@ export const viewport: Viewport = {
  */
 const themeScript = `(function(){try{var d=document.documentElement,s=localStorage.getItem("theme"),t=s==="dark"||s==="light"?s:(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");d.dataset.theme=t;d.style.colorScheme=t}catch(e){document.documentElement.dataset.theme="light"}document.documentElement.classList.add("js")})();`;
 
-/** Structured data limited to verifiable facts from site config — no ratings, dates or invented details. */
-function organizationJsonLd() {
-  const sameAs = configuredSocialLinks().map((link) => link.href);
-  return {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: siteConfig.name,
-    url: siteConfig.url,
-    logo: `${siteConfig.url}/icon.svg`,
-    description: siteConfig.description,
-    slogan: siteConfig.tagline,
-    ...(siteConfig.contactEmail ? { email: siteConfig.contactEmail } : {}),
-    ...(sameAs.length ? { sameAs } : {}),
-  };
-}
+/** Site-wide structured data, limited to facts from config and content — no ratings or invented details. */
+const knowsAbout = [
+  ...services.map((service) => service.title),
+  ...new Set(technologyCategories.flatMap((category) => category.items)),
+];
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
@@ -79,10 +90,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()).replace(/</g, "\\u003c") }}
-        />
+        <JsonLd data={[organizationSchema(knowsAbout), websiteSchema()]} />
       </head>
       <body className="flex min-h-dvh flex-col">
         <a

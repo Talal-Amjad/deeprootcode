@@ -6,16 +6,18 @@ import { PageHeader } from "./page-header";
 /** Shared layout for policy pages with readable long-form typography. */
 export function LegalPage({
   title,
+  path,
   intro,
   children,
 }: {
   title: string;
+  path: string;
   intro: string;
   children: React.ReactNode;
 }) {
   return (
     <>
-      <PageHeader eyebrow="Legal" title={title} description={intro} />
+      <PageHeader eyebrow="Legal" title={title} description={intro} breadcrumbs={[{ name: title, path }]} />
       <Container className="py-16 sm:py-20">
         <div className="mx-auto max-w-3xl">
           <div

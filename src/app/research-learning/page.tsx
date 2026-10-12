@@ -11,9 +11,9 @@ import { pageMetadata } from "@/lib/metadata";
 import { pad } from "@/lib/utils";
 
 export const metadata = pageMetadata({
-  title: "Research & Learning",
+  title: "Research Support & Programming Mentorship",
   description:
-    "Research implementation, AI/ML prototyping, Master's and PhD technical collaboration, project mentoring, one-to-one learning sessions and code reviews.",
+    "Research implementation and AI/ML prototyping for Master's and PhD projects, plus final-year project mentoring, 1:1 coding sessions and code reviews.",
   path: "/research-learning",
 });
 
@@ -68,6 +68,7 @@ export default function ResearchLearningPage() {
     <>
       <PageHeader
         eyebrow="Research & Learning"
+        breadcrumbs={[{ name: "Research & Learning", path: "/research-learning" }]}
         title={
           <>
             Where research and learning <Accent>take root.</Accent>

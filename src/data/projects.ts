@@ -184,6 +184,15 @@ export const projects: Project[] = [
   },
 ];
 
+/** Service page each project category links to (internal linking between portfolio and services). */
+export const serviceForCategory: Record<ProjectCategory, string> = {
+  "Web Applications": "web-development",
+  "AI & Machine Learning": "ai-machine-learning",
+  Automation: "business-process-automation",
+  "Mobile Applications": "mobile-app-development",
+  "Research & Prototypes": "research-development",
+};
+
 export function getProject(slug: string): Project | undefined {
   return projects.find((project) => project.slug === slug);
 }

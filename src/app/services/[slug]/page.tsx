@@ -10,6 +10,11 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { getService, services } from "@/data/services";
 import { pageMetadata } from "@/lib/metadata";
 import { pad } from "@/lib/utils";
+import { faqSchema, serviceSchema } from "@/lib/seo";
+import { FaqList } from "@/components/seo/faq-list";
+import { JsonLd } from "@/components/seo/json-ld";
+import { ProjectCard } from "@/components/projects/project-card";
+import { projects, serviceForCategory } from "@/data/projects";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -23,7 +28,11 @@ export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
   const service = getService(slug);
   if (!service) return {};
-  return pageMetadata({ title: service.title, description: service.summary, path: `/services/${service.slug}` });
+  return pageMetadata({
+    title: service.seo.title,
+    description: service.seo.description,
+    path: `/services/${service.slug}`,
+  });
 }
 
 export default async function ServiceDetailPage({ params }: Props) {
@@ -32,14 +41,19 @@ export default async function ServiceDetailPage({ params }: Props) {
   if (!service) notFound();
 
   const others = services.filter((s) => s.slug !== service.slug);
+  const related = projects.filter((p) => serviceForCategory[p.category] === service.slug).slice(0, 2);
 
   return (
     <>
+      <JsonLd data={[serviceSchema(service), faqSchema(service.faqs)]} />
       <PageHeader
         eyebrow={`Service · ${service.shortTitle}`}
         title={service.title}
         description={service.summary}
-        back={{ href: "/services", label: "All services" }}
+        breadcrumbs={[
+          { name: "Services", path: "/services" },
+          { name: service.title, path: `/services/${service.slug}` },
+        ]}
       >
         <ButtonLink href={`/contact?service=${service.slug}`} size="lg" arrow>
           {service.ctaLabel}
@@ -129,8 +143,34 @@ export default async function ServiceDetailPage({ params }: Props) {
         </ol>
       </Section>
 
+      <Section labelledBy="faq-title" className="border-t border-border bg-surface/40">
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-4">
+            <SectionHeading
+              id="faq-title"
+              eyebrow="FAQ"
+              title={`${service.title}: common questions`}
+            />
+          </div>
+          <div className="lg:col-span-8">
+            <FaqList faqs={service.faqs} />
+          </div>
+        </div>
+      </Section>
+
+      {related.length > 0 && (
+        <Section labelledBy="related-title" className="border-t border-border">
+          <SectionHeading id="related-title" eyebrow="Examples" title={`${service.title} projects`} />
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            {related.map((project, index) => (
+              <ProjectCard key={project.slug} project={project} index={index} />
+            ))}
+          </div>
+        </Section>
+      )}
+
       <FinalCta
-        title={`Ready to talk about ${service.title.toLowerCase()}?`}
+        title={`Ready to talk about ${service.title}?`}
         description="Share a few details about your goals and constraints. We'll reply with questions, ideas and a suggested next step."
       />
 

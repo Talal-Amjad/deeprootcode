@@ -155,6 +155,40 @@ Every page is statically pre-rendered; only `/api/contact` runs on the server.
 
 ---
 
+## SEO
+
+### What's built in
+| Area | Implementation |
+| --- | --- |
+| Titles & descriptions | Keyword-targeted per page; ≤ 60 / ≤ 160 characters. Services: `seo` field in `src/data/services.ts`; pages: `pageMetadata()` calls |
+| Canonical URLs | Every page, derived from `NEXT_PUBLIC_SITE_URL` |
+| Structured data | Organization + WebSite (site-wide), Service + FAQPage (service pages), FAQPage (contact), BreadcrumbList (all interior pages). Helpers in `src/lib/seo.ts` |
+| Content for long-tail searches | 3–4 FAQs per service + general FAQ on `/contact`, rendered as crawlable HTML |
+| Internal linking | Visible breadcrumbs, service ⇄ project cross-links, footer links to every service |
+| Social previews | Branded Open Graph/Twitter images: site default plus one per service and project |
+| Crawling | `sitemap.xml` (all pages), `robots.txt`, `llms.txt` (summary for AI search engines) |
+| Performance | Fully static pages, self-hosted fonts, minimal client JS — good Core Web Vitals |
+
+> FAQ rich results in Google are currently limited to a few site types, but the FAQ content still helps rankings for question-style searches and AI answers. **Review the FAQ answers** (in `src/data/services.ts` and `src/data/content.ts`) so they match how you actually work — e.g. code ownership, NDAs and support.
+
+### Launch checklist (do these — they matter more than code)
+1. **Set `NEXT_PUBLIC_SITE_URL`** to your real domain and redeploy.
+2. **Google Search Console** → add property → "HTML tag" → put the content value in `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` → redeploy → verify → submit `https://yourdomain/sitemap.xml`.
+3. **Bing Webmaster Tools** → same with `NEXT_PUBLIC_BING_SITE_VERIFICATION` (Bing also powers several AI search tools).
+4. **Replace sample projects with real case studies.** Real work with concrete problems and outcomes is the strongest content you can publish.
+5. **Earn links and mentions** (the biggest ranking factor you control):
+   - Agency directories: Clutch, GoodFirms, DesignRush, The Manifest
+   - LinkedIn company page, GitHub organisation (add both to `social` in `src/config/site.ts` — they become `sameAs` in structured data)
+   - Open-source tools, guest articles, talks, university/community partnerships
+6. **Collect genuine reviews** on Clutch/Google once you have clients (never add fake reviews or rating markup).
+7. **Google Business Profile** — only if you have an eligible physical address or service area.
+8. **Publish regularly.** A blog with practical articles (e.g. "RAG vs fine-tuning", "How to plan an MVP", "Final-year project ideas with AI") is how agencies rank for non-brand searches.
+9. Re-check monthly in Search Console: queries, click-through rates, indexing issues.
+
+Expect brand searches ("Deep Root Code") to rank within days of indexing; competitive terms like "AI development agency" take months of content and links.
+
+---
+
 ## Project structure
 
 ```text

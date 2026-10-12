@@ -3,13 +3,15 @@ import { ExternalLink, Info } from "lucide-react";
 import { SocialIcon } from "@/components/ui/social-icons";
 import { ProjectCard } from "@/components/projects/project-card";
 import { ProjectVisual } from "@/components/projects/project-visual";
-import { BackLink } from "@/components/layout/page-header";
+import Link from "next/link";
+import { Breadcrumbs } from "@/components/layout/breadcrumbs";
+import { getService } from "@/data/services";
 import { FinalCta } from "@/components/sections/final-cta";
 import { Badge, SampleBadge } from "@/components/ui/badge";
 import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
-import { getProject, projects } from "@/data/projects";
+import { getProject, projects, serviceForCategory } from "@/data/projects";
 import { pageMetadata } from "@/lib/metadata";
 import { pad } from "@/lib/utils";
 
@@ -54,6 +56,7 @@ export default async function ProjectDetailPage({ params }: Props) {
   if (!project) notFound();
 
   const related = projects.filter((p) => p.slug !== project.slug && p.category === project.category).slice(0, 2);
+  const relatedService = getService(serviceForCategory[project.category]);
   const more = related.length ? related : projects.filter((p) => p.slug !== project.slug).slice(0, 2);
 
   return (
@@ -61,7 +64,12 @@ export default async function ProjectDetailPage({ params }: Props) {
       <section className="relative -mt-16 overflow-hidden border-b border-border pt-16 sm:-mt-[4.5rem] sm:pt-[4.5rem]">
         <div aria-hidden="true" className="bg-grid mask-fade-b pointer-events-none absolute inset-0" />
         <Container className="relative pt-14 pb-14 sm:pt-20">
-          <BackLink href="/projects" label="All projects" />
+          <Breadcrumbs
+            crumbs={[
+              { name: "Projects", path: "/projects" },
+              { name: project.title, path: `/projects/${project.slug}` },
+            ]}
+          />
           <div className="flex flex-wrap items-center gap-2" data-reveal>
             <span className="eyebrow">{project.category}</span>
             {project.isSample && <SampleBadge />}
@@ -112,6 +120,17 @@ export default async function ProjectDetailPage({ params }: Props) {
                 <h2 className="eyebrow mb-2">Category</h2>
                 <p className="text-fg">{project.category}</p>
               </div>
+              {relatedService && (
+                <div>
+                  <h2 className="eyebrow mb-2">Related service</h2>
+                  <Link
+                    href={`/services/${relatedService.slug}`}
+                    className="text-accent-text hover:underline hover:underline-offset-4"
+                  >
+                    {relatedService.title}
+                  </Link>
+                </div>
+              )}
               <div>
                 <h2 className="eyebrow mb-3">Technologies</h2>
                 <ul className="flex flex-wrap gap-1.5">
@@ -126,7 +145,11 @@ export default async function ProjectDetailPage({ params }: Props) {
                 <h2 className="eyebrow mb-2">Status</h2>
                 <p className="text-fg">{project.isSample ? "Illustrative sample" : "Delivered project"}</p>
               </div>
-              <ButtonLink href="/contact" arrow className="w-full">
+              <ButtonLink
+                href={relatedService ? `/contact?service=${relatedService.slug}` : "/contact"}
+                arrow
+                className="w-full"
+              >
                 Discuss a similar project
               </ButtonLink>
             </div>

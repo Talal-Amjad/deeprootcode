@@ -53,6 +53,33 @@ export const services: Service[] = [
     ],
     contactCategory: "Web Development",
     ctaLabel: "Discuss a web project",
+    seo: {
+      title: "Web Development Services: Web Apps & SaaS",
+      description:
+        "Custom web development: business websites, web applications, SaaS platforms, e-commerce and dashboards built with Next.js, React, Node.js, Rails and Django.",
+    },
+    faqs: [
+      {
+        question: "What kind of websites and web applications do you build?",
+        answer:
+          "We build business websites and landing pages, custom web applications, SaaS platforms, e-commerce stores, admin dashboards and customer portals — from the interface through to the backend, database and deployment.",
+      },
+      {
+        question: "Which technologies do you use for web development?",
+        answer:
+          "Most frontends use React and Next.js with TypeScript and Tailwind CSS. For backends we choose between Node.js/Express, Ruby on Rails, Django and FastAPI, with PostgreSQL, MySQL or MongoDB, depending on the project's needs and your team's existing skills.",
+      },
+      {
+        question: "Can you improve or take over an existing web application?",
+        answer:
+          "Yes. We start with a code review to understand the architecture, risks and quick wins, then agree a plan — whether that's fixing performance problems, adding features or gradually modernising the codebase.",
+      },
+      {
+        question: "Will my website be fast and search-engine friendly?",
+        answer:
+          "Performance, accessibility and technical SEO are part of our baseline: server rendering where it helps, optimised images and fonts, semantic HTML, metadata, sitemaps and structured data.",
+      },
+    ],
   },
   {
     slug: "ai-machine-learning",
@@ -102,6 +129,33 @@ export const services: Service[] = [
     ],
     contactCategory: "AI & Machine Learning",
     ctaLabel: "Explore an AI idea",
+    seo: {
+      title: "AI Development: LLM, Chatbots & RAG",
+      description:
+        "AI and machine learning development: LLM integrations, AI chatbots and assistants, RAG systems, document processing and custom ML models with evaluation.",
+    },
+    faqs: [
+      {
+        question: "What is a RAG system and when do I need one?",
+        answer:
+          "Retrieval-augmented generation (RAG) lets a language model answer questions using your own documents. Relevant passages are retrieved first and the model answers from them, ideally with citations. It suits knowledge bases, policies, support content and internal documentation.",
+      },
+      {
+        question: "Can you build an AI chatbot trained on our company data?",
+        answer:
+          "Yes. In most cases we use retrieval over your documents rather than training a new model, which is faster, cheaper and easier to keep up to date. We add access controls, source citations and a fallback when the answer isn't in your data.",
+      },
+      {
+        question: "How do you make AI features reliable?",
+        answer:
+          "We define what a good output looks like, build an evaluation set from realistic examples, and test prompts, retrieval and models against it. Production features get guardrails, monitoring and human review where decisions matter.",
+      },
+      {
+        question: "Can you help us check whether an AI idea is feasible?",
+        answer:
+          "Yes. A short proof of concept with real data is often the best first step. It shows what accuracy is achievable and what a full build would involve before you commit a larger budget.",
+      },
+    ],
   },
   {
     slug: "business-process-automation",
@@ -151,6 +205,33 @@ export const services: Service[] = [
     ],
     contactCategory: "Automation",
     ctaLabel: "Automate a workflow",
+    seo: {
+      title: "Business Process Automation Services",
+      description:
+        "Automate repetitive work with workflow automation, API and third-party integrations, AI-powered automation, and scheduled data processing and reporting.",
+    },
+    faqs: [
+      {
+        question: "What business processes can be automated?",
+        answer:
+          "Good candidates are repetitive, rules-based tasks: copying data between systems, generating recurring reports, processing invoices or forms, onboarding steps, notifications and approvals. Steps that need human judgement can stay manual or become review steps.",
+      },
+      {
+        question: "Should we use Zapier or Make, or a custom automation?",
+        answer:
+          "No-code tools are great for simple workflows. Custom automation makes sense when you hit their limits — complex logic, large data volumes, unsupported APIs, cost at scale or stricter reliability needs. We can also combine both.",
+      },
+      {
+        question: "Can AI be part of an automated workflow?",
+        answer:
+          "Yes. Language models can classify messages, extract fields from documents or summarise content inside a workflow. We pair them with validation rules and confidence thresholds so uncertain results go to a person.",
+      },
+      {
+        question: "What happens if an automation fails?",
+        answer:
+          "We build in logging, retries and alerts, so failures are visible and recoverable instead of silent. Each workflow is documented so your team understands what it does.",
+      },
+    ],
   },
   {
     slug: "mobile-app-development",
@@ -197,6 +278,33 @@ export const services: Service[] = [
     ],
     contactCategory: "Mobile Development",
     ctaLabel: "Plan a mobile app",
+    seo: {
+      title: "Mobile App Development: iOS & Android Apps",
+      description:
+        "Cross-platform mobile app development with React Native: Android and iOS business apps with polished UI, offline support and reliable backend integration.",
+    },
+    faqs: [
+      {
+        question: "Do you build apps for both Android and iOS?",
+        answer:
+          "Yes. We use React Native, so one codebase serves both platforms, with platform-specific details where users would notice them.",
+      },
+      {
+        question: "Can the app work without an internet connection?",
+        answer:
+          "Where the use case needs it, we store data on the device and sync it when a connection returns — common for field, inspection and data-collection apps.",
+      },
+      {
+        question: "Can you also build the backend for the app?",
+        answer:
+          "Yes. We design and build the APIs, database, authentication and admin tools the app depends on, or integrate with your existing backend.",
+      },
+      {
+        question: "Do you help publish apps to the App Store and Google Play?",
+        answer:
+          "We prepare release builds and help with store submission, listings and review requirements. The developer accounts are created in your name so you own the apps.",
+      },
+    ],
   },
   {
     slug: "backend-api-development",
@@ -246,6 +354,33 @@ export const services: Service[] = [
     ],
     contactCategory: "Backend / API Development",
     ctaLabel: "Talk about your backend",
+    seo: {
+      title: "Backend & REST API Development Services",
+      description:
+        "Backend and API development: REST APIs, database design, authentication, scalable systems and performance tuning with Node.js, Rails, Django and FastAPI.",
+    },
+    faqs: [
+      {
+        question: "Which backend frameworks do you work with?",
+        answer:
+          "Node.js with Express, Ruby on Rails, Django and FastAPI. We choose based on the project, performance needs and the skills of the team that will maintain it.",
+      },
+      {
+        question: "Which database should I use: PostgreSQL, MySQL or MongoDB?",
+        answer:
+          "For most business applications with related data, PostgreSQL is a strong default. MongoDB can suit flexible, document-shaped data, and Redis is ideal for caching and queues. We recommend a choice after looking at your data and access patterns.",
+      },
+      {
+        question: "How do you keep APIs secure?",
+        answer:
+          "Every request is validated, access rules are enforced on the server, secrets stay out of code, and authentication follows established standards. We also add rate limiting, logging and dependency updates as part of normal work.",
+      },
+      {
+        question: "Can you fix a slow API or database?",
+        answer:
+          "Yes. We profile real requests and queries to find the actual bottlenecks, then apply targeted fixes such as indexes, query changes, caching or background jobs.",
+      },
+    ],
   },
   {
     slug: "research-development",
@@ -295,6 +430,33 @@ export const services: Service[] = [
     ],
     contactCategory: "Research & Academic Projects",
     ctaLabel: "Discuss your research",
+    seo: {
+      title: "Research Implementation for Master's & PhD",
+      description:
+        "Technical research support: prototypes, AI/ML experiments, dataset preparation and research tools for Master's, PhD and applied research projects.",
+    },
+    faqs: [
+      {
+        question: "What kind of research support do you provide?",
+        answer:
+          "Technical implementation: turning a research design into working code, building prototypes and experiment pipelines, preparing datasets, implementing baselines and creating research tools. The research questions, analysis and conclusions remain yours.",
+      },
+      {
+        question: "Do you write theses or research papers?",
+        answer:
+          "No. We don't write theses, papers or other work to be submitted as someone else's. We help with engineering and explain what we build so you fully understand it, and we support appropriate disclosure under your institution's rules.",
+      },
+      {
+        question: "Can you help with machine learning experiments?",
+        answer:
+          "Yes. We implement models and baselines, set up reproducible training and evaluation with fixed seeds and logged configurations, and help you run experiments consistently across datasets.",
+      },
+      {
+        question: "Which fields do you work with?",
+        answer:
+          "We focus on computing-heavy research — AI and machine learning, NLP, data processing, software systems and applied research tools. If your field is different, share the details and we'll tell you honestly whether we're a good fit.",
+      },
+    ],
   },
   {
     slug: "academic-technical-projects",
@@ -340,6 +502,28 @@ export const services: Service[] = [
     ],
     contactCategory: "Research & Academic Projects",
     ctaLabel: "Get project guidance",
+    seo: {
+      title: "Final Year Project Mentoring & MVPs",
+      description:
+        "Mentoring for semester and final-year projects, plus prototypes, proofs of concept and MVPs for founders: architecture planning, code reviews and guidance.",
+    },
+    faqs: [
+      {
+        question: "Can you help with my final-year or semester project?",
+        answer:
+          "Yes, as mentors. We help you choose a sensible architecture, plan the work, get unstuck on implementation problems and review your code — so you build and can confidently explain your own project.",
+      },
+      {
+        question: "Will you build the whole university project for me?",
+        answer:
+          "No. Submitting work built by someone else would breach academic integrity rules. Our role is guidance, teaching and review; the project you submit should be your own.",
+      },
+      {
+        question: "Do you build MVPs and prototypes for startups?",
+        answer:
+          "Yes. For founders and teams we build focused prototypes and MVPs end to end, designed to test an idea with real users and to grow into a production product if it works.",
+      },
+    ],
   },
   {
     slug: "technical-training-mentorship",
@@ -388,6 +572,33 @@ export const services: Service[] = [
     ],
     contactCategory: "Training & Mentorship",
     ctaLabel: "Book a learning session",
+    seo: {
+      title: "Programming Mentorship & 1:1 Coding Help",
+      description:
+        "One-to-one programming mentorship in web development, backend, AI and automation, plus code reviews, debugging help and technical interview preparation.",
+    },
+    faqs: [
+      {
+        question: "What can I learn in one-to-one sessions?",
+        answer:
+          "JavaScript and TypeScript, React and Next.js, Node.js, Python, Django, FastAPI, databases, APIs, AI integrations and automation — or how to structure and finish a real project. Sessions are planned around your goals.",
+      },
+      {
+        question: "Are sessions suitable for beginners?",
+        answer:
+          "Yes. We start by understanding your current level and adjust the pace. Beginners focus on fundamentals through small projects; experienced developers can go straight to architecture, reviews or a specific technology.",
+      },
+      {
+        question: "Can you review my code or help me debug?",
+        answer:
+          "Yes. We review code for structure, readability, security and performance, and run live debugging sessions where we explain how we find the problem as well as the fix.",
+      },
+      {
+        question: "Do you help with technical interview preparation?",
+        answer:
+          "Yes. We run mock interviews covering problem solving, system design and practical coding, with specific feedback on what to improve.",
+      },
+    ],
   },
 ];
 

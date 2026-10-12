@@ -16,6 +16,7 @@ export default function TermsPage() {
   return (
     <LegalPage
       title="Terms of Service"
+      path="/terms"
       intro={`These terms govern your use of the ${siteConfig.name} website. By using the site, you agree to them.`}
     >
       <h2>1. About these terms</h2>

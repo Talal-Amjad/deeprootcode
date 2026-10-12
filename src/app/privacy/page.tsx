@@ -16,6 +16,7 @@ export default function PrivacyPage() {
   return (
     <LegalPage
       title="Privacy Policy"
+      path="/privacy"
       intro={`This policy explains what information ${siteConfig.name} collects through this website, why we collect it and the choices you have.`}
     >
       <h2>1. Who we are</h2>

@@ -10,7 +10,7 @@ import { pageMetadata } from "@/lib/metadata";
 import { pad } from "@/lib/utils";
 
 export const metadata = pageMetadata({
-  title: "About",
+  title: "About Us: A Software Engineering Agency",
   description:
     "Deep Root Code builds practical, maintainable software on strong engineering foundations — for businesses, startups, researchers and learners.",
   path: "/about",
@@ -44,6 +44,7 @@ export default function AboutPage() {
     <>
       <PageHeader
         eyebrow="About"
+        breadcrumbs={[{ name: "About", path: "/about" }]}
         title={
           <>
             We build technology on <Accent>strong foundations.</Accent>

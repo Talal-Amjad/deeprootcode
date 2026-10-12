@@ -35,7 +35,7 @@ export function Hero() {
               <span className="absolute inline-flex size-full rounded-full bg-signal opacity-60 motion-safe:animate-ping" />
               <span className="relative inline-flex size-2 rounded-full bg-signal" />
             </span>
-            Software · AI · Automation · Research
+            Software Development Agency · AI · Automation
           </p>
 
           <h1
